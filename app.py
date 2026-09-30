@@ -1,3 +1,16 @@
+import sqlite3
+import os
+
+def init_db():
+    if not os.path.exists('unique_social.db'):
+        conn = sqlite3.connect('unique_social.db')
+        with open('schema.sql', 'r') as f:
+            conn.executescript(f.read())
+        conn.close()
+
+# Call this right when your app boots up
+init_db()
+
 import os
 import io
 import re
