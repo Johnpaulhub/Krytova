@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Krytova - Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #0b0e14;
+            --card-bg: #151a21;
+            --text-color: #f3f4f6;
+            --primary-color: #3b82f6;
+            --border-color: #2d3748;
+            --danger-color: #ef4444;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+        h1 { margin: 0; font-size: 1.5rem; }
+        .logout-btn {
+            padding: 8px 16px;
+            background-color: var(--danger-color);
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .main-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .flash-message {
+            padding: 12px; border-radius: 8px; margin-bottom: 16px;
+            text-align: center; font-size: 0.9rem; background-color: rgba(16, 185, 129, 0.2);
+            border: 1px solid #10b981; color: #34d399;
+        }
+    </style>
+</head>
+<body>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash-message flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <header>
+        <h1>🛡️ Krytova</h1>
+        <div>
+            <span style="margin-right: 10px; color: #9ca3af;">@{{ username }}</span>
+            <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <h2>Welcome to your feed, {{ username }}!</h2>
+        <p>This is the functional dashboard placeholder for Krytova.</p>
+        <p>You can now build the social features here.</p>
+    </div>
+
+</body>
+</html>
